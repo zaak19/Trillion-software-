@@ -93,6 +93,8 @@
     }
 
     .language-switch {
+      position: relative;
+      z-index: 2001;
       display: flex;
       gap: 5px;
       border: 1px solid var(--border);
@@ -101,12 +103,16 @@
     }
 
     .language-switch button {
+      position: relative;
+      z-index: 2002;
       border: none;
       background: transparent;
       color: var(--text);
       padding: 7px 12px;
       border-radius: 20px;
       cursor: pointer;
+      pointer-events: auto;
+      touch-action: manipulation;
       font-size: 12px;
     }
 
@@ -596,8 +602,8 @@
       </div>
 
       <div class="language-switch">
-        <button id="frBtn" class="active">FR</button>
-        <button id="enBtn">EN</button>
+        <button type="button" id="frBtn" class="active" aria-label="Choisir le français">FR</button>
+        <button type="button" id="enBtn" aria-label="Choose English">EN</button>
       </div>
 
     </div>
@@ -630,8 +636,8 @@
 
       <p
         class="hero-description"
-        data-fr="Trillion Software imagine et développe des solutions technologiques innovantes, des logiciels performants et des applications mobiles conçues pour accompagner le monde vers le futur."
-        data-en="Trillion Software imagines and develops innovative technology solutions, powerful software and mobile applications designed to move the world toward the future."
+        data-fr="Trillion Software développe des solutions technologiques innovantes, des logiciels performants et des applications mobiles conçues pour accompagner le monde vers le futur."
+        data-en="Trillion Software develops innovative technology solutions, powerful software and mobile applications designed to move the world toward the future."
       >
         Trillion Software imagine et développe des solutions technologiques innovantes,
         des logiciels performants et des applications mobiles conçues pour accompagner
