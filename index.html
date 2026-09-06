@@ -3,872 +3,437 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Trillion Software | Innovation & Technology</title>
-
-  <meta
-    name="description"
-    content="Trillion Software conçoit des logiciels, des applications mobiles et des solutions technologiques innovantes."
-  >
+  <meta name="theme-color" content="#0066ff">
+  <meta name="description" content="Trillion Software — applications mobiles, guides, informations, coaching privé et livres.">
+  <title>Trillion Software</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --bg: #03050b;
-      --bg-secondary: #070c18;
+      --bg2: #070c18;
+      --card: rgba(255,255,255,.035);
       --blue: #1877ff;
-      --blue-light: #48b8ff;
-      --white: #ffffff;
+      --blue2: #48b8ff;
+      --white: #fff;
       --text: #aeb8ca;
-      --border: rgba(255, 255, 255, 0.1);
+      --muted: #778196;
+      --border: rgba(255,255,255,.11);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
+      line-height: 1.6;
     }
+    a { color: inherit; }
+    button { font: inherit; }
 
-    /* =========================
-       NAVIGATION
-    ========================= */
-
+    /* NAVIGATION */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(3, 5, 11, 0.75);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(3,5,11,.82);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 18px 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1200px; margin: auto; padding: 16px 25px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
-
-    .brand {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 3px;
-    }
-
-    .brand span {
-      color: var(--blue-light);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
+    .brand { text-decoration: none; font-size: 20px; font-weight: 800; letter-spacing: 4px; line-height: 1.15; }
+    .brand span { display: block; color: var(--blue2); }
+    .nav-right { display: flex; align-items: center; gap: 25px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text); text-decoration: none; font-size: 14px; transition: .25s; }
+    .nav-links a:hover { color: var(--white); }
     .language-switch {
-      display: flex;
-      gap: 5px;
-      border: 1px solid var(--border);
-      padding: 4px;
-      border-radius: 30px;
+      display: flex; gap: 3px; border: 1px solid var(--border); padding: 4px; border-radius: 30px;
     }
-
-    .language-switch button {
-      border: none;
-      background: transparent;
-      color: var(--text);
-      padding: 7px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 12px;
+    .lang-btn {
+      border: 0; background: transparent; color: var(--text); padding: 8px 12px;
+      border-radius: 22px; cursor: pointer; transition: .25s; font-weight: 600;
     }
+    .lang-btn:hover { color: var(--white); }
+    .lang-btn.active { background: var(--blue); color: var(--white); box-shadow: 0 0 18px rgba(24,119,255,.35); }
 
-    .language-switch button.active {
-      background: var(--blue);
-      color: white;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
+    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 120px 25px 80px;
+      min-height: 100vh; padding: 145px 25px 100px; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: radial-gradient(circle at 80% 5%, rgba(24,119,255,.20), transparent 34%), var(--bg);
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 900px;
-      height: 900px;
-      background: radial-gradient(
-        circle,
-        rgba(24, 119, 255, 0.25) 0%,
-        rgba(24, 119, 255, 0.08) 35%,
-        transparent 70%
-      );
-      top: -350px;
-      right: -250px;
-      filter: blur(20px);
+    .hero::after {
+      content: ""; position: absolute; width: 850px; height: 850px; right: -300px; bottom: -500px;
+      border: 2px solid var(--blue); border-radius: 50%; box-shadow: 0 0 90px rgba(24,119,255,.45);
     }
-
-    .stars {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.8;
-      background-image:
-        radial-gradient(circle at 15% 30%, white 1px, transparent 2px),
-        radial-gradient(circle at 80% 20%, white 1px, transparent 2px),
-        radial-gradient(circle at 70% 70%, white 1px, transparent 2px),
-        radial-gradient(circle at 35% 80%, white 1px, transparent 2px);
+    .stars { position: absolute; inset: 0; pointer-events: none; opacity: .75;
+      background-image: radial-gradient(circle at 15% 30%, white 1px, transparent 2px), radial-gradient(circle at 80% 20%, white 1px, transparent 2px), radial-gradient(circle at 70% 70%, white 1px, transparent 2px), radial-gradient(circle at 35% 80%, white 1px, transparent 2px);
       background-size: 350px 350px;
     }
+    .hero-container { position: relative; z-index: 2; max-width: 1200px; width: 100%; margin: auto; }
+    .hero-logo { margin-bottom: 40px; }
+    .hero-logo h1 { font-size: clamp(58px, 11vw, 130px); letter-spacing: 12px; line-height: .9; }
+    .hero-logo p { margin-top: 24px; color: var(--blue2); letter-spacing: 15px; font-size: clamp(11px,2vw,18px); }
+    .hero-line { max-width: 700px; height: 1px; margin: 45px 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); }
+    .hero h2 { font-size: clamp(32px,5vw,65px); line-height: 1.08; max-width: 850px; margin-bottom: 25px; }
+    .hero h2 span { color: var(--blue2); }
+    .hero-description { max-width: 700px; color: var(--text); font-size: 18px; line-height: 1.8; margin-bottom: 35px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { display: inline-block; padding: 15px 25px; border-radius: 10px; text-decoration: none; font-weight: 700; transition: .25s; }
+    .btn-primary { background: var(--blue); box-shadow: 0 0 30px rgba(24,119,255,.28); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(24,119,255,.55); }
+    .btn-secondary { border: 1px solid var(--border); background: rgba(255,255,255,.02); }
+    .btn-secondary:hover { background: rgba(255,255,255,.07); }
+    .star-symbol { position: absolute; z-index: 1; right: 12%; top: 19%; font-size: 70px; text-shadow: 0 0 25px rgba(255,255,255,.7), 0 0 50px rgba(72,184,255,.7); animation: pulse 4s infinite ease-in-out; }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity:.8 } 50% { transform: scale(1.12); opacity:1 } }
 
-    .hero-container {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      width: 100%;
-      margin: auto;
+    /* GENERAL */
+    section { padding: 105px 25px; position: relative; }
+    .container { max-width: 1200px; margin: auto; }
+    .section-tag { color: var(--blue2); letter-spacing: 4px; font-size: 12px; margin-bottom: 16px; text-transform: uppercase; }
+    .section-title { font-size: clamp(34px,5vw,58px); line-height: 1.1; margin-bottom: 20px; }
+    .section-description { color: var(--text); max-width: 760px; line-height: 1.8; }
+
+    /* MAIN CATEGORIES */
+    .catalog { background: radial-gradient(circle at 80% 0%, rgba(24,119,255,.10), transparent 38%), var(--bg2); }
+    .main-category { margin-top: 65px; }
+    .category-heading { display: flex; align-items: center; gap: 15px; margin-bottom: 28px; }
+    .category-heading h3 { font-size: clamp(28px,4vw,42px); }
+    .lock-badge { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.04); border-radius: 50%; font-size: 19px; }
+
+    /* APPS */
+    .apps-list { display: grid; gap: 22px; }
+    .app-card {
+      display: grid; grid-template-columns: 230px 1fr; gap: 30px; align-items: center;
+      padding: 24px; border: 1px solid var(--border); border-radius: 22px;
+      background: var(--card); box-shadow: var(--shadow); transition: .3s;
     }
+    .app-card:hover { transform: translateY(-4px); border-color: rgba(24,119,255,.55); }
+    .app-image { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 17px; border: 1px solid var(--border); background: #091329; }
+    .app-placeholder { width: 100%; aspect-ratio: 1/1; border-radius: 17px; display: grid; place-items: center; background: linear-gradient(145deg,#091329,#050914); border: 1px solid var(--border); font-size: 58px; }
+    .app-card h4 { font-size: clamp(27px,4vw,38px); margin-bottom: 9px; }
+    .app-card p { color: var(--text); max-width: 650px; }
+    .coming { display: inline-flex; margin-top: 17px; padding: 7px 12px; border-radius: 999px; color: var(--blue2); border: 1px solid rgba(72,184,255,.25); background: rgba(72,184,255,.07); font-size: 13px; font-weight: 700; }
+    .available { display: inline-flex; margin-top: 17px; padding: 7px 12px; border-radius: 999px; color: #fff; background: rgba(24,119,255,.8); font-size: 13px; font-weight: 700; }
 
-    .hero-logo {
-      margin-bottom: 35px;
+    /* OPTIONS */
+    .options-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
+    .option-card { border: 1px solid var(--border); border-radius: 20px; padding: 32px; background: var(--card); cursor: pointer; transition: .3s; position: relative; }
+    .option-card:hover { transform: translateY(-5px); border-color: rgba(24,119,255,.5); }
+    .option-icon { font-size: 38px; margin-bottom: 15px; }
+    .option-card h4 { font-size: 28px; margin-bottom: 8px; }
+    .option-card p { color: var(--text); }
+    .option-lock { position: absolute; top: 20px; right: 20px; font-size: 20px; }
+    .subcontent { display: none; margin-top: 22px; padding: 28px; border: 1px solid var(--border); border-radius: 20px; background: rgba(255,255,255,.02); }
+    .subcontent.open { display: block; animation: appear .25s ease; }
+    @keyframes appear { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:none } }
+    .product-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .product-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: rgba(255,255,255,.025); }
+    .product-cover { aspect-ratio: 4/3; display: grid; place-items: center; background: linear-gradient(145deg,#101a31,#050914); font-size: 50px; }
+    .product-info { padding: 18px; }
+    .product-info h5 { font-size: 19px; margin-bottom: 7px; }
+    .product-info p { color: var(--text); font-size: 14px; }
+    .price { margin-top: 12px; color: var(--blue2); font-weight: 800; }
+
+    /* NEWS */
+    .feed { display: grid; gap: 18px; }
+    .post { border: 1px solid var(--border); border-radius: 17px; padding: 22px; background: rgba(255,255,255,.025); }
+    .post-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin-top: 15px; display: none; }
+    .post-image.has-image { display: block; }
+    .post p { color: var(--text); }
+
+    /* SOCIAL */
+    .social { text-align: center; background: #050812; }
+    .social .section-description { margin: auto; }
+    .social-links { margin-top: 38px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .social-link { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; background: rgba(255,255,255,.04); border: 1px solid var(--border); transition: .25s; text-decoration: none; }
+    .social-link:hover { transform: translateY(-5px); border-color: rgba(255,255,255,.35); box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+    .social-link svg { width: 28px; height: 28px; }
+
+    /* CONTACT / FOOTER */
+    #contact { background: var(--bg2); }
+    .contact-box { padding: 55px; border: 1px solid var(--border); border-radius: 24px; background: radial-gradient(circle at 80% 0%, rgba(24,119,255,.18), transparent 42%), rgba(255,255,255,.02); }
+    .email-link { display: inline-block; margin-top: 18px; color: var(--blue2); font-size: clamp(20px,3vw,28px); font-weight: 700; text-decoration: none; word-break: break-word; }
+    .email-link:hover { text-decoration: underline; }
+    footer { padding: 30px 25px; border-top: 1px solid var(--border); }
+    .footer-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 14px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-right { margin-left: auto; }
+      .app-card { grid-template-columns: 160px 1fr; }
+      .product-grid { grid-template-columns: 1fr; }
     }
-
-    .hero-logo h1 {
-      font-size: clamp(52px, 10vw, 130px);
-      letter-spacing: 12px;
-      font-weight: 700;
-      line-height: 0.9;
-      text-shadow: 0 0 35px rgba(255, 255, 255, 0.1);
+    @media (max-width: 650px) {
+      .nav-container { padding: 13px 15px; }
+      .brand { font-size: 16px; letter-spacing: 3px; }
+      .language-switch { gap: 1px; }
+      .lang-btn { padding: 7px 8px; font-size: 12px; }
+      section { padding: 80px 18px; }
+      .hero { padding: 125px 18px 80px; }
+      .hero-logo h1 { letter-spacing: 6px; }
+      .hero-logo p { letter-spacing: 8px; }
+      .star-symbol { right: 8%; font-size: 45px; }
+      .app-card { grid-template-columns: 1fr; padding: 18px; }
+      .app-image, .app-placeholder { max-width: 260px; }
+      .options-grid { grid-template-columns: 1fr; }
+      .contact-box { padding: 35px 24px; }
+      .footer-container { flex-direction: column; }
     }
-
-    .hero-logo p {
-      margin-top: 25px;
-      letter-spacing: 15px;
-      color: var(--blue-light);
-      font-size: clamp(10px, 2vw, 18px);
-    }
-
-    .hero-line {
-      width: 100%;
-      max-width: 700px;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
-      margin: 45px 0;
-    }
-
-    .hero h2 {
-      font-size: clamp(30px, 5vw, 65px);
-      max-width: 800px;
-      line-height: 1.1;
-      margin-bottom: 25px;
-    }
-
-    .hero h2 span {
-      color: var(--blue-light);
-    }
-
-    .hero-description {
-      max-width: 650px;
-      color: var(--text);
-      line-height: 1.8;
-      font-size: 17px;
-      margin-bottom: 35px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 15px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s;
-      font-weight: 600;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: white;
-      box-shadow: 0 0 25px rgba(24, 119, 255, 0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 35px rgba(24, 119, 255, 0.6);
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--border);
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .horizon {
-      position: absolute;
-      width: 130%;
-      height: 450px;
-      border-radius: 50% 50% 0 0;
-      border-top: 2px solid var(--blue);
-      bottom: -350px;
-      left: -15%;
-      box-shadow:
-        0 -30px 100px rgba(24, 119, 255, 0.35),
-        0 -5px 30px rgba(72, 184, 255, 0.4);
-      background: radial-gradient(
-        ellipse at center top,
-        rgba(24, 119, 255, 0.08),
-        transparent 60%
-      );
-    }
-
-    .star-symbol {
-      position: absolute;
-      top: 18%;
-      right: 12%;
-      font-size: 70px;
-      color: white;
-      text-shadow:
-        0 0 20px rgba(255, 255, 255, 0.7),
-        0 0 50px rgba(72, 184, 255, 0.8);
-      animation: pulse 4s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-
-      50% {
-        transform: scale(1.15);
-        opacity: 1;
-      }
-    }
-
-    /* =========================
-       GENERAL SECTIONS
-    ========================= */
-
-    section {
-      padding: 110px 25px;
-      position: relative;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-tag {
-      color: var(--blue-light);
-      letter-spacing: 4px;
-      font-size: 12px;
-      margin-bottom: 18px;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      font-size: clamp(35px, 5vw, 60px);
-      max-width: 800px;
-      line-height: 1.1;
-      margin-bottom: 25px;
-    }
-
-    .section-description {
-      color: var(--text);
-      max-width: 700px;
-      line-height: 1.8;
-      font-size: 16px;
-    }
-
-    /* =========================
-       SERVICES
-    ========================= */
-
-    .services {
-      background:
-        radial-gradient(
-          circle at 80% 0%,
-          rgba(24, 119, 255, 0.1),
-          transparent 35%
-        ),
-        var(--bg-secondary);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 60px;
-    }
-
-    .service-card {
-      padding: 35px;
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      transition: 0.4s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(24, 119, 255, 0.5);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    .service-icon {
-      width: 55px;
-      height: 55px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(24, 119, 255, 0.12);
-      font-size: 25px;
-      margin-bottom: 25px;
-    }
-
-    .service-card h3 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .service-card p {
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    /* =========================
-       INNOVATION
-    ========================= */
-
-    .innovation-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-    .innovation-visual {
-      min-height: 500px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 30px;
-      background:
-        radial-gradient(
-          circle at 50% 30%,
-          rgba(72, 184, 255, 0.4),
-          transparent 20%
-        ),
-        radial-gradient(
-          circle at 50% 50%,
-          rgba(24, 119, 255, 0.15),
-          transparent 50%
-        ),
-        #050915;
-      border: 1px solid var(--border);
-    }
-
-    .innovation-orbit {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      border: 1px solid rgba(72, 184, 255, 0.25);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .innovation-orbit::before {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--blue-light);
-      border-radius: 50%;
-      top: 20%;
-      left: 10%;
-      box-shadow: 0 0 20px var(--blue-light);
-    }
-
-    .innovation-core {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(255, 255, 255, 0.9),
-        var(--blue-light) 10%,
-        var(--blue) 35%,
-        transparent 70%
-      );
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      filter: blur(1px);
-      box-shadow: 0 0 100px rgba(24, 119, 255, 0.8);
-    }
-
-    /* =========================
-       VISION
-    ========================= */
-
-    .vision {
-      text-align: center;
-      background: #050812;
-      overflow: hidden;
-    }
-
-    .vision .section-title {
-      margin: auto auto 25px;
-    }
-
-    .vision .section-description {
-      margin: auto;
-    }
-
-    .vision-statement {
-      margin-top: 65px;
-      padding: 50px 20px;
-      font-size: clamp(30px, 5vw, 65px);
-      font-weight: bold;
-      line-height: 1.2;
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        var(--blue-light),
-        #ffffff
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact-box {
-      padding: 60px;
-      border: 1px solid var(--border);
-      border-radius: 25px;
-      background:
-        radial-gradient(
-          circle at 80% 0%,
-          rgba(24, 119, 255, 0.2),
-          transparent 40%
-        ),
-        rgba(255, 255, 255, 0.02);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      padding: 35px 25px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: #778196;
-      font-size: 14px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .innovation-content {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-box {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 40px 25px;
-      }
-
-      .star-symbol {
-        right: 8%;
-        font-size: 45px;
-      }
-
-      .hero-logo h1 {
-        letter-spacing: 6px;
-      }
-
-      .hero-logo p {
-        letter-spacing: 8px;
-      }
-
-      .footer-container {
-        flex-direction: column;
-      }
-    }
-
   </style>
 </head>
 
 <body>
-
-  <!-- NAVIGATION -->
-
   <nav>
     <div class="nav-container">
-
-      <a href="#home" class="brand">
-        TRILLION <span>SOFTWARE</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#services" data-fr="Services" data-en="Services">Services</a>
-        <a href="#innovation" data-fr="Innovation" data-en="Innovation">Innovation</a>
-        <a href="#about" data-fr="À propos" data-en="About">À propos</a>
-        <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="#home" class="brand">TRILLION <span>SOFTWARE</span></a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#catalog" data-i18n="navCatalog">Catalogue</a>
+          <a href="#social" data-i18n="navSocial">Réseaux</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
+        </div>
+        <div class="language-switch" aria-label="Language selector">
+          <button class="lang-btn active" type="button" data-lang="fr">FR</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+          <button class="lang-btn" type="button" data-lang="ru">RU</button>
+          <button class="lang-btn" type="button" data-lang="es">ES</button>
+          <button class="lang-btn" type="button" data-lang="de">DE</button>
+        </div>
       </div>
-
-   <div class="language-switch">
-  <button class="lang-btn active" data-lang="fr">FR</button>
-  <button class="lang-btn" data-lang="en">EN</button>
-  <button class="lang-btn" data-lang="ru">RU</button>
-  <button class="lang-btn" data-lang="es">ES</button>
-  <button class="lang-btn" data-lang="de">DE</button>
-</div>
-
     </div>
   </nav>
 
-
-  <!-- HERO -->
-
-  <section class="hero" id="home">
-
-    <div class="stars"></div>
-
-    <div class="star-symbol">✦</div>
-
-    <div class="hero-container">
-
-      <div class="hero-logo">
-        <h1>TRILLION</h1>
-        <p>SOFTWARE</p>
+  <main>
+    <section class="hero" id="home">
+      <div class="stars"></div>
+      <div class="star-symbol">✦</div>
+      <div class="hero-container">
+        <div class="hero-logo"><h1>TRILLION</h1><p>SOFTWARE</p></div>
+        <div class="hero-line"></div>
+        <h2 data-i18n-html="heroTitle">Innovons aujourd'hui, <span>construisons demain.</span></h2>
+        <p class="hero-description" data-i18n="heroDescription">Trillion Software développe des solutions technologiques innovantes, des logiciels performants et des applications mobiles conçues pour accompagner le monde vers le futur.</p>
+        <div class="buttons">
+          <a href="#catalog" class="btn btn-primary" data-i18n="discover">Découvrir nos solutions</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="contactUs">Nous contacter</a>
+        </div>
       </div>
+    </section>
 
-      <div class="hero-line"></div>
+    <section class="catalog" id="catalog">
+      <div class="container">
+        <div class="section-tag" data-i18n="catalogTag">NOS SOLUTIONS</div>
+        <h2 class="section-title" data-i18n="catalogTitle">Découvrez l'univers Trillion Software.</h2>
+        <p class="section-description" data-i18n="catalogDescription">Applications mobiles, guides, informations, coaching privé et livres : tout est organisé ici dans une interface simple et moderne.</p>
 
-      <h2
-        data-fr="Innovons aujourd'hui, <span>construisons demain.</span>"
-        data-en="Innovate today, <span>build tomorrow.</span>"
-      >
-        Innovons aujourd'hui, <span>construisons demain.</span>
-      </h2>
-
-   <p
-  class="hero-description"
-  data-fr="Trillion Software développe des solutions technologiques innovantes, des logiciels performants et des applications mobiles conçues pour accompagner le monde vers le futur."
-  data-en="Trillion Software develops innovative technology solutions, powerful software and mobile applications designed to move the world toward the future."
->
-  Trillion Software développe des solutions technologiques innovantes,
-  des logiciels performants et des applications mobiles conçues pour accompagner
-  le monde vers le futur.
-</p>
-
-      <div class="buttons">
-
-        <a
-          href="#services"
-          class="btn btn-primary"
-          data-fr="Découvrir nos solutions"
-          data-en="Discover our solutions"
-        >
-          Découvrir nos solutions
-        </a>
-
-        <a
-          href="#contact"
-          class="btn btn-secondary"
-          data-fr="Nous contacter"
-          data-en="Contact us"
-        >
-          Nous contacter
-        </a>
-
-      </div>
-
-    </div>
-
-    <div class="horizon"></div>
-
-  </section>
-
-
-  <!-- SERVICES -->
-
-  <section class="services" id="services">
-
-    <div class="container">
-
-      <div
-        class="section-tag"
-        data-fr="CE QUE NOUS CRÉONS"
-        data-en="WHAT WE CREATE"
-      >
-        CE QUE NOUS CRÉONS
-      </div>
-
-      <h2
-        class="section-title"
-        data-fr="Des technologies conçues pour repousser les limites."
-        data-en="Technology designed to push beyond limits."
-      >
-        Des technologies conçues pour repousser les limites.
-      </h2>
-
-      <p
-        class="section-description"
-        data-fr="Nous développons des solutions digitales modernes adaptées aux entreprises, aux entrepreneurs et aux projets qui souhaitent évoluer avec la technologie."
-        data-en="We develop modern digital solutions for businesses, entrepreneurs and ambitious projects that want to evolve with technology."
-      >
-        Nous développons des solutions digitales modernes adaptées aux entreprises,
-        aux entrepreneurs et aux projets qui souhaitent évoluer avec la technologie.
-      </p>
-
-
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon">💻</div>
-
-          <h3
-            data-fr="Logiciels"
-            data-en="Software"
-          >
-            Logiciels
-          </h3>
-
-          <p
-            data-fr="Conception de logiciels modernes, performants et adaptés aux besoins spécifiques de chaque projet."
-            data-en="Development of modern, powerful software tailored to the specific needs of every project."
-          >
-            Conception de logiciels modernes, performants et adaptés aux besoins spécifiques de chaque projet.
-          </p>
+        <!-- 1. APPLICATIONS MOBILES -->
+        <div class="main-category" id="applications">
+          <div class="category-heading"><h3 data-i18n="appsTitle">Applications mobiles</h3></div>
+          <div class="apps-list">
+            <article class="app-card">
+              <img class="app-image" src="worker-tsa.jpg" alt="Worker TSA">
+              <div><h4>Worker TSA</h4><p data-i18n="workerDesc">Application mobile de Trillion Software.</p><span class="available" data-i18n="available">Disponible</span></div>
+            </article>
+            <article class="app-card">
+              <div class="app-placeholder">📱</div>
+              <div><h4>Mera TSA</h4><p data-i18n="meraDesc">Une nouvelle application Trillion Software en préparation.</p><span class="coming" data-i18n="coming">Disponible bientôt</span></div>
+            </article>
+            <article class="app-card">
+              <div class="app-placeholder">🔐</div>
+              <div><h4>Vault TSA</h4><p data-i18n="vaultDesc">Une solution Trillion Software actuellement en préparation.</p><span class="coming" data-i18n="coming">Disponible bientôt</span></div>
+            </article>
+            <article class="app-card">
+              <div class="app-placeholder">🎙️</div>
+              <div><h4>Voice TSA</h4><p data-i18n="voiceDesc">Une application vocale Trillion Software actuellement en préparation.</p><span class="coming" data-i18n="coming">Disponible bientôt</span></div>
+            </article>
+          </div>
         </div>
 
-
-        <div class="service-card">
-          <div class="service-icon">📱</div>
-
-          <h3
-            data-fr="Applications mobiles"
-            data-en="Mobile Applications"
-          >
-            Applications mobiles
-          </h3>
-
-          <p
-            data-fr="Création d'applications mobiles modernes offrant une expérience fluide et intuitive aux utilisateurs."
-            data-en="Creation of modern mobile applications delivering a seamless and intuitive user experience."
-          >
-            Création d'applications mobiles modernes offrant une expérience fluide et intuitive aux utilisateurs.
-          </p>
+        <!-- 2. GUIDES ET INFORMATIONS -->
+        <div class="main-category" id="guides-info">
+          <div class="category-heading"><h3 data-i18n="guidesTitle">Guides et informations</h3><span class="lock-badge" title="Contenu protégé">🔒</span></div>
+          <div class="options-grid">
+            <button class="option-card" type="button" data-panel="guidesPanel">
+              <span class="option-lock">🔒</span><div class="option-icon">📚</div>
+              <h4 data-i18n="guides">Guides</h4><p data-i18n="guidesIntro">Découvrez les guides et formations disponibles.</p>
+            </button>
+            <button class="option-card" type="button" data-panel="infoPanel">
+              <span class="option-lock">🔒</span><div class="option-icon">📰</div>
+              <h4 data-i18n="information">Informations</h4><p data-i18n="infoIntro">Consultez le fil d'actualité et les publications de Trillion Software.</p>
+            </button>
+          </div>
+          <div class="subcontent" id="guidesPanel">
+            <h4 data-i18n="guidesCatalog">Catalogue des guides</h4>
+            <p class="section-description" style="margin-top:8px" data-i18n="guidesPlaceholder">L'espace est prêt. Les guides pourront être ajoutés ici avec leur affiche, leur nom et leur montant.</p>
+            <div class="product-grid" style="margin-top:20px">
+              <article class="product-card"><div class="product-cover">📘</div><div class="product-info"><h5 data-i18n="guideSlot1">Guide à venir</h5><p data-i18n="guideSlotDesc">Emplacement réservé pour un futur guide.</p></div></article>
+            </div>
+          </div>
+          <div class="subcontent" id="infoPanel">
+            <h4 data-i18n="newsTitle">Fil d'actualité</h4>
+            <div class="feed" style="margin-top:18px">
+              <article class="post"><p data-i18n="newsPlaceholder">Les prochaines informations et publications de Trillion Software apparaîtront ici, sous forme de journal avec du texte et des images.</p></article>
+            </div>
+          </div>
         </div>
 
-
-        <div class="service-card">
-          <div class="service-icon">⚡</div>
-
-          <h3
-            data-fr="Innovation technologique"
-            data-en="Technology Innovation"
-          >
-            Innovation technologique
-          </h3>
-
-          <p
-            data-fr="Recherche et développement de nouvelles solutions technologiques capables de répondre aux défis du futur."
-            data-en="Research and development of new technology solutions designed to address the challenges of the future."
-          >
-            Recherche et développement de nouvelles solutions technologiques capables de répondre aux défis du futur.
-          </p>
+        <!-- 3. COACHING PRIVÉ ET LIVRES -->
+        <div class="main-category" id="coaching-books">
+          <div class="category-heading"><h3 data-i18n="coachingBooksTitle">Coaching privé et livres</h3><span class="lock-badge" title="Contenu protégé">🔒</span></div>
+          <div class="options-grid">
+            <button class="option-card" type="button" data-panel="coachingPanel">
+              <span class="option-lock">🔒</span><div class="option-icon">🎓</div>
+              <h4 data-i18n="privateCoaching">Coaching privé</h4><p data-i18n="coachingIntro">Un espace prévu pour présenter au moins trois coachings.</p>
+            </button>
+            <button class="option-card" type="button" data-panel="booksPanel">
+              <span class="option-lock">🔒</span><div class="option-icon">📖</div>
+              <h4 data-i18n="books">Livres</h4><p data-i18n="booksIntro">Un espace prévu pour présenter les livres avec leur fiche et leur montant.</p>
+            </button>
+          </div>
+          <div class="subcontent" id="coachingPanel">
+            <h4 data-i18n="coachingCatalog">Coaching privé</h4>
+            <div class="product-grid" style="margin-top:20px">
+              <article class="product-card"><div class="product-cover">🎓</div><div class="product-info"><h5 data-i18n="coachingSlot1">Coaching 1</h5><p data-i18n="coachingSlotDesc">Fiche et description du coaching à ajouter.</p><div class="price" data-i18n="amountToAdd">Montant à ajouter</div></div></article>
+              <article class="product-card"><div class="product-cover">🎓</div><div class="product-info"><h5 data-i18n="coachingSlot2">Coaching 2</h5><p data-i18n="coachingSlotDesc">Fiche et description du coaching à ajouter.</p><div class="price" data-i18n="amountToAdd">Montant à ajouter</div></div></article>
+              <article class="product-card"><div class="product-cover">🎓</div><div class="product-info"><h5 data-i18n="coachingSlot3">Coaching 3</h5><p data-i18n="coachingSlotDesc">Fiche et description du coaching à ajouter.</p><div class="price" data-i18n="amountToAdd">Montant à ajouter</div></div></article>
+            </div>
+          </div>
+          <div class="subcontent" id="booksPanel">
+            <h4 data-i18n="booksCatalog">Livres</h4>
+            <div class="product-grid" style="margin-top:20px">
+              <article class="product-card"><div class="product-cover">📕</div><div class="product-info"><h5 data-i18n="bookSlot">Livre à venir</h5><p data-i18n="bookSlotDesc">L'affiche, le nom et le montant du livre pourront être ajoutés ici.</p><div class="price" data-i18n="amountToAdd">Montant à ajouter</div></div></article>
+            </div>
+          </div>
         </div>
-
       </div>
+    </section>
 
-    </div>
-
-  </section>
-
-
-  <!-- INNOVATION -->
-
-  <section id="innovation">
-
-    <div class="container innovation-content">
-
-      <div>
-
-        <div
-          class="section-tag"
-          data-fr="NOTRE INNOVATION"
-          data-en="OUR INNOVATION"
-        >
-          NOTRE INNOVATION
+    <!-- SOCIAL MEDIA -->
+    <section class="social" id="social">
+      <div class="container">
+        <div class="section-tag" data-i18n="socialTag">SUIVEZ-NOUS</div>
+        <h2 class="section-title" data-i18n="socialTitle">Nos réseaux sociaux</h2>
+        <p class="section-description" data-i18n="socialDescription">Les liens officiels de Trillion Software pourront être ajoutés ici.</p>
+        <div class="social-links">
+          <a class="social-link" href="#" aria-label="Instagram" title="Instagram" data-social="instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C" stroke="none"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="Twitter / X" title="Twitter / X" data-social="twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.88-6.38L6.5 22H3.39l7.24-8.28L3 2h6.4l4.41 5.82L18.9 2Zm-1.1 17.7h1.73L8.46 4.18H6.6L17.8 19.7Z"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="Facebook" title="Facebook" data-social="facebook">
+            <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.08c0-.87.24-1.46 1.5-1.46h1.72V4.94c-.3-.04-1.34-.13-2.55-.13-2.52 0-4.25 1.54-4.25 4.37V11H7v3h2.92v8h3.58Z"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="TikTok" title="TikTok" data-social="tiktok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.5v3.1c-1.8.1-3.3-.5-4.5-1.5v6.8c0 4-2.7 6.1-6 6.1-3.1 0-5.5-2.1-5.5-5.1 0-3.3 2.9-5.4 6.2-4.8v3.2c-1.7-.6-3.1.2-3.1 1.7 0 1.1.9 1.9 2.2 1.9 1.5 0 2.6-.9 2.6-3V3h4.6Z"/></svg>
+          </a>
+          <a class="social-link" href="#" aria-label="YouTube" title="YouTube" data-social="youtube">
+            <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
+          </a>
         </div>
-
-        <h2
-          class="section-title"
-          data-fr="Nous transformons les idées en expériences numériques."
-          data-en="We transform ideas into digital experiences."
-        >
-          Nous transformons les idées en expériences numériques.
-        </h2>
-
-        <p
-          class="section-description"
-          data-fr="Chaque grande innovation commence par une idée. Chez Trillion Software, nous transformons les concepts ambitieux en technologies concrètes, intelligentes et accessibles."
-          data-en="Every great innovation begins with an idea. At Trillion Software, we transform ambitious concepts into concrete, intelligent and accessible technologies."
-        >
-          Chaque grande innovation commence par une idée. Chez Trillion Software,
-          nous transformons les concepts ambitieux en technologies concrètes,
-          intelligentes et accessibles.
-        </p>
-
       </div>
+    </section>
 
-
-      <div class="innovation-visual">
-        <div class="innovation-orbit"></div>
-        <div class="innovation-core"></div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div class="section-tag" data-i18n="contactTag">CONTACT</div>
+          <h2 class="section-title" data-i18n="contactTitle">Une question ? Parlons-nous.</h2>
+          <p class="section-description" data-i18n="contactDescription">Pour contacter Trillion Software, utilisez notre adresse e-mail professionnelle.</p>
+          <a class="email-link" href="mailto:trillionsoftware@protonmail.com">trillionsoftware@protonmail.com</a>
+        </div>
       </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="footer-container">
+      <span>© 2026 Trillion Software. <span data-i18n="rights">Tous droits réservés.</span></span>
+      <span data-i18n="footerText">Innovation • Applications • Solutions digitales</span>
     </div>
+  </footer>
 
-  </section>
+  <script>
+    const translations = {
+      fr: {
+        navCatalog:'Catalogue', navSocial:'Réseaux', navContact:'Contact',
+        heroTitle:"Innovons aujourd'hui, <span>construisons demain.</span>",
+        heroDescription:'Trillion Software développe des solutions technologiques innovantes, des logiciels performants et des applications mobiles conçues pour accompagner le monde vers le futur.',
+        discover:'Découvrir nos solutions', contactUs:'Nous contacter',
+        catalogTag:'NOS SOLUTIONS', catalogTitle:"Découvrez l'univers Trillion Software.", catalogDescription:'Applications mobiles, guides, informations, coaching privé et livres : tout est organisé ici dans une interface simple et moderne.',
+        appsTitle:'Applications mobiles', workerDesc:'Application mobile de Trillion Software.', available:'Disponible', coming:'Disponible bientôt',
+        meraDesc:'Une nouvelle application Trillion Software en préparation.', vaultDesc:'Une solution Trillion Software actuellement en préparation.', voiceDesc:'Une application vocale Trillion Software actuellement en préparation.',
+        guidesTitle:'Guides et informations', guides:'Guides', information:'Informations', guidesIntro:'Découvrez les guides et formations disponibles.', infoIntro:"Consultez le fil d'actualité et les publications de Trillion Software.",
+        guidesCatalog:'Catalogue des guides', guidesPlaceholder:"L'espace est prêt. Les guides pourront être ajoutés ici avec leur affiche, leur nom et leur montant.", guideSlot1:'Guide à venir', guideSlotDesc:'Emplacement réservé pour un futur guide.',
+        newsTitle:"Fil d'actualité", newsPlaceholder:'Les prochaines informations et publications de Trillion Software apparaîtront ici, sous forme de journal avec du texte et des images.',
+        coachingBooksTitle:'Coaching privé et livres', privateCoaching:'Coaching privé', books:'Livres', coachingIntro:'Un espace prévu pour présenter au moins trois coachings.', booksIntro:'Un espace prévu pour présenter les livres avec leur fiche et leur montant.',
+        coachingCatalog:'Coaching privé', coachingSlot1:'Coaching 1', coachingSlot2:'Coaching 2', coachingSlot3:'Coaching 3', coachingSlotDesc:'Fiche et description du coaching à ajouter.', amountToAdd:'Montant à ajouter',
+        booksCatalog:'Livres', bookSlot:'Livre à venir', bookSlotDesc:"L'affiche, le nom et le montant du livre pourront être ajoutés ici.",
+        socialTag:'SUIVEZ-NOUS', socialTitle:'Nos réseaux sociaux', socialDescription:'Les liens officiels de Trillion Software pourront être ajoutés ici.',
+        contactTag:'CONTACT', contactTitle:'Une question ? Parlons-nous.', contactDescription:'Pour contacter Trillion Software, utilisez notre adresse e-mail professionnelle.', rights:'Tous droits réservés.', footerText:'Innovation • Applications • Solutions digitales'
+      },
+      en: {
+        navCatalog:'Catalogue', navSocial:'Social', navContact:'Contact',
+        heroTitle:'Innovate today, <span>build tomorrow.</span>',
+        heroDescription:'Trillion Software develops innovative technology solutions, powerful software and mobile applications designed to move the world toward the future.',
+        discover:'Discover our solutions', contactUs:'Contact us', catalogTag:'OUR SOLUTIONS', catalogTitle:'Discover the Trillion Software universe.', catalogDescription:'Mobile applications, guides, information, private coaching and books — all organized in one simple, modern interface.',
+        appsTitle:'Mobile applications', workerDesc:'Trillion Software mobile application.', available:'Available', coming:'Coming soon', meraDesc:'A new Trillion Software application in preparation.', vaultDesc:'A Trillion Software solution currently in preparation.', voiceDesc:'A Trillion Software voice application currently in preparation.',
+        guidesTitle:'Guides and information', guides:'Guides', information:'Information', guidesIntro:'Discover the available guides and training materials.', infoIntro:'Read the Trillion Software news feed and publications.', guidesCatalog:'Guide catalogue', guidesPlaceholder:'This space is ready. Guides can be added here with their cover, name and price.', guideSlot1:'Guide coming soon', guideSlotDesc:'Reserved space for a future guide.', newsTitle:'News feed', newsPlaceholder:'Future Trillion Software information and publications will appear here as a journal with text and images.',
+        coachingBooksTitle:'Private coaching and books', privateCoaching:'Private coaching', books:'Books', coachingIntro:'A space designed to present at least three coaching offers.', booksIntro:'A space designed to present books with their cover, name and price.', coachingCatalog:'Private coaching', coachingSlot1:'Coaching 1', coachingSlot2:'Coaching 2', coachingSlot3:'Coaching 3', coachingSlotDesc:'Coaching card and description to be added.', amountToAdd:'Price to add', booksCatalog:'Books', bookSlot:'Book coming soon', bookSlotDesc:'The book cover, name and price can be added here.',
+        socialTag:'FOLLOW US', socialTitle:'Our social networks', socialDescription:'Official Trillion Software links can be added here.', contactTag:'CONTACT', contactTitle:'Have a question? Let’s talk.', contactDescription:'To contact Trillion Software, use our professional email address.', rights:'All rights reserved.', footerText:'Innovation • Applications • Digital solutions'
+      },
+      ru: {
+        navCatalog:'Каталог', navSocial:'Соцсети', navContact:'Контакты', heroTitle:'Инновации сегодня, <span>строим завтра.</span>', heroDescription:'Trillion Software разрабатывает инновационные технологические решения, производительные программы и мобильные приложения для будущего.', discover:'Наши решения', contactUs:'Связаться с нами', catalogTag:'НАШИ РЕШЕНИЯ', catalogTitle:'Мир Trillion Software.', catalogDescription:'Мобильные приложения, руководства, информация, частный коучинг и книги — всё в одном современном интерфейсе.', appsTitle:'Мобильные приложения', workerDesc:'Мобильное приложение Trillion Software.', available:'Доступно', coming:'Скоро доступно', meraDesc:'Новое приложение Trillion Software в разработке.', vaultDesc:'Решение Trillion Software в разработке.', voiceDesc:'Голосовое приложение Trillion Software в разработке.', guidesTitle:'Руководства и информация', guides:'Руководства', information:'Информация', guidesIntro:'Доступные руководства и обучающие материалы.', infoIntro:'Лента новостей и публикаций Trillion Software.', guidesCatalog:'Каталог руководств', guidesPlaceholder:'Здесь будут размещаться обложка, название и цена руководств.', guideSlot1:'Руководство скоро', guideSlotDesc:'Место для будущего руководства.', newsTitle:'Лента новостей', newsPlaceholder:'Здесь будут появляться новости и публикации с текстом и изображениями.', coachingBooksTitle:'Частный коучинг и книги', privateCoaching:'Частный коучинг', books:'Книги', coachingIntro:'Место для как минимум трёх коучинговых предложений.', booksIntro:'Место для книг с обложкой, названием и ценой.', coachingCatalog:'Частный коучинг', coachingSlot1:'Коучинг 1', coachingSlot2:'Коучинг 2', coachingSlot3:'Коучинг 3', coachingSlotDesc:'Карточка и описание коучинга будут добавлены.', amountToAdd:'Цена будет добавлена', booksCatalog:'Книги', bookSlot:'Книга скоро', bookSlotDesc:'Здесь можно добавить обложку, название и цену книги.', socialTag:'ПОДПИСЫВАЙТЕСЬ', socialTitle:'Наши социальные сети', socialDescription:'Здесь можно добавить официальные ссылки Trillion Software.', contactTag:'КОНТАКТЫ', contactTitle:'Есть вопрос? Свяжитесь с нами.', contactDescription:'Для связи с Trillion Software используйте профессиональный адрес электронной почты.', rights:'Все права защищены.', footerText:'Инновации • Приложения • Цифровые решения'
+      },
+      es: {
+        navCatalog:'Catálogo', navSocial:'Redes', navContact:'Contacto', heroTitle:'Innovamos hoy, <span>construimos mañana.</span>', heroDescription:'Trillion Software desarrolla soluciones tecnológicas innovadoras, software potente y aplicaciones móviles para acompañar al mundo hacia el futuro.', discover:'Descubrir soluciones', contactUs:'Contactarnos', catalogTag:'NUESTRAS SOLUCIONES', catalogTitle:'Descubre el universo de Trillion Software.', catalogDescription:'Aplicaciones móviles, guías, información, coaching privado y libros, organizados en una interfaz moderna y sencilla.', appsTitle:'Aplicaciones móviles', workerDesc:'Aplicación móvil de Trillion Software.', available:'Disponible', coming:'Próximamente', meraDesc:'Nueva aplicación de Trillion Software en preparación.', vaultDesc:'Solución de Trillion Software en preparación.', voiceDesc:'Aplicación de voz de Trillion Software en preparación.', guidesTitle:'Guías e información', guides:'Guías', information:'Información', guidesIntro:'Descubre las guías y formaciones disponibles.', infoIntro:'Consulta el feed de noticias y publicaciones de Trillion Software.', guidesCatalog:'Catálogo de guías', guidesPlaceholder:'Este espacio está listo para añadir portada, nombre y precio de las guías.', guideSlot1:'Guía próximamente', guideSlotDesc:'Espacio reservado para una futura guía.', newsTitle:'Feed de noticias', newsPlaceholder:'Aquí aparecerán las próximas noticias y publicaciones con texto e imágenes.', coachingBooksTitle:'Coaching privado y libros', privateCoaching:'Coaching privado', books:'Libros', coachingIntro:'Espacio para presentar al menos tres servicios de coaching.', booksIntro:'Espacio para presentar libros con portada, nombre y precio.', coachingCatalog:'Coaching privado', coachingSlot1:'Coaching 1', coachingSlot2:'Coaching 2', coachingSlot3:'Coaching 3', coachingSlotDesc:'Ficha y descripción del coaching por añadir.', amountToAdd:'Precio por añadir', booksCatalog:'Libros', bookSlot:'Libro próximamente', bookSlotDesc:'Aquí se pueden añadir la portada, el nombre y el precio del libro.', socialTag:'SÍGUENOS', socialTitle:'Nuestras redes sociales', socialDescription:'Aquí se podrán añadir los enlaces oficiales de Trillion Software.', contactTag:'CONTACTO', contactTitle:'¿Tienes una pregunta? Hablemos.', contactDescription:'Para contactar con Trillion Software, utiliza nuestro correo profesional.', rights:'Todos los derechos reservados.', footerText:'Innovación • Aplicaciones • Soluciones digitales'
+      },
+      de: {
+        navCatalog:'Katalog', navSocial:'Soziale Netzwerke', navContact:'Kontakt', heroTitle:'Heute innovieren, <span>morgen bauen.</span>', heroDescription:'Trillion Software entwickelt innovative Technologielösungen, leistungsstarke Software und mobile Anwendungen für die Zukunft.', discover:'Unsere Lösungen entdecken', contactUs:'Kontakt aufnehmen', catalogTag:'UNSERE LÖSUNGEN', catalogTitle:'Entdecke die Welt von Trillion Software.', catalogDescription:'Mobile Anwendungen, Guides, Informationen, privates Coaching und Bücher — übersichtlich in einer modernen Oberfläche.', appsTitle:'Mobile Anwendungen', workerDesc:'Mobile Anwendung von Trillion Software.', available:'Verfügbar', coming:'Demnächst verfügbar', meraDesc:'Eine neue Trillion-Software-Anwendung in Vorbereitung.', vaultDesc:'Eine Trillion-Software-Lösung in Vorbereitung.', voiceDesc:'Eine Trillion-Software-Sprachanwendung in Vorbereitung.', guidesTitle:'Guides und Informationen', guides:'Guides', information:'Informationen', guidesIntro:'Entdecke verfügbare Guides und Schulungsmaterialien.', infoIntro:'Lies den Newsfeed und die Veröffentlichungen von Trillion Software.', guidesCatalog:'Guide-Katalog', guidesPlaceholder:'Dieser Bereich ist vorbereitet. Hier können Cover, Name und Preis der Guides hinzugefügt werden.', guideSlot1:'Guide folgt', guideSlotDesc:'Platzhalter für einen zukünftigen Guide.', newsTitle:'Newsfeed', newsPlaceholder:'Hier erscheinen künftig Informationen und Veröffentlichungen mit Texten und Bildern.', coachingBooksTitle:'Privates Coaching und Bücher', privateCoaching:'Privates Coaching', books:'Bücher', coachingIntro:'Bereich für mindestens drei Coaching-Angebote.', booksIntro:'Bereich für Bücher mit Cover, Name und Preis.', coachingCatalog:'Privates Coaching', coachingSlot1:'Coaching 1', coachingSlot2:'Coaching 2', coachingSlot3:'Coaching 3', coachingSlotDesc:'Coaching-Karte und Beschreibung werden ergänzt.', amountToAdd:'Preis wird ergänzt', booksCatalog:'Bücher', bookSlot:'Buch folgt', bookSlotDesc:'Cover, Name und Preis des Buches können hier ergänzt werden.', socialTag:'FOLGE UNS', socialTitle:'Unsere sozialen Netzwerke', socialDescription:'Hier können die offiziellen Links von Trillion Software ergänzt werden.', contactTag:'KONTAKT', contactTitle:'Eine Frage? Sprechen wir darüber.', contactDescription:'Für den Kontakt mit Trillion Software verwenden Sie unsere professionelle E-Mail-Adresse.', rights:'Alle Rechte vorbehalten.', footerText:'Innovation • Anwendungen • Digitale Lösungen'
+      }
+    };
 
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.fr;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+      localStorage.setItem('trillionLanguage', lang);
+    }
 
-  <!-- ABOUT / VISION -->
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
 
-  <section class="vision" id="about">
+    document.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const panel = document.getElementById(card.dataset.panel);
+        const wasOpen = panel.classList.contains('open');
+        document.querySelectorAll('.subcontent').forEach(p => p.classList.remove('open'));
+        if (!wasOpen) panel.classList.add('open');
+      });
+    });
 
-    <div class="container">
+    document.querySelectorAll('[data-social]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.getAttribute('href') === '#') {
+          e.preventDefault();
+          alert('Le lien officiel de ce réseau social sera ajouté prochainement.');
+        }
+      });
+    });
 
-      <div
-        class="section-tag"
-        data-fr="NOTRE VISION"
-        data-en="OUR VISION"
-      >
-        NOTRE VISION
-      </div>
-
-      <h2
-        class="section-title"
-        data-fr="Le futur ne se prédit pas. Il se construit."
-        data-en="The future is not predicted. It is built."
-      >
-        Le futur ne se prédit pas. Il se construit.
-      </h2>
-
-      <p
-        class="section-description"
-        data-fr="Trillion Software a pour ambition de participer à la construction d'un monde plus connecté, plus intelligent et technologiquement avancé."
-        data-en="Trillion Software aims to help build a more connected, intelligent and technologically advanced world."
-      >
-        Trillion Software a pour ambition de participer à la construction
-        d'un monde plus connecté, plus intelligent et technologiquement avancé.
-      </p>
-
-      <div
-        class="vision-statement"
-        data-fr="INNOVONS AUJOURD'HUI.<br>CONSTRUISONS DEMAIN."
-        data-en="INNOVATE TODAY.<br>BUILD TOMORROW."
-      >
-        INNOVONS AUJOURD'HUI.<br>
-        CONSTRUISONS DEMAIN.
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section id="contact">
-
-    <div class="container">
-
-      <div class="contact-box">
-
-        <div>
-
-          <div
-            class="section-tag"
- 
+    setLanguage(localStorage.getItem('trillionLanguage') || 'fr');
+  </script>
+</body>
+</html>
